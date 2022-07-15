@@ -9,14 +9,15 @@ function HomePage(){
       </div>
 
       <div id='button-container'>
-        <a href="/poses">All Poses | </a>
-        <a href="/sequences">All Sequences</a>
+        <a className='homeButton' href="/poses">POSES  </a>
+        <a className='homeButton' href="/sequences"> SEQUENCES</a>
+        <hr />
       </div>
 
       <button id="hamburger">Click Me!</button>
-      <div id='square'>
-        
-      </div>
+
+      <h1 className="title">PowerAsana</h1>
+
     </div>
   )
 }

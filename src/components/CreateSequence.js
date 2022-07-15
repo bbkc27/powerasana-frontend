@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import {useNavigate} from "react-router-dom";
 import axiosInstance from "../utils/axios-utils";
+import {Form, FloatingLabel, Button} from 'react-bootstrap';
 
 function NewSequence({userSignedIn}) {
 
@@ -30,7 +31,7 @@ function NewSequence({userSignedIn}) {
   let removePoseFields = (i) => {
     let newPoseValue = [...poseValues];
     newPoseValue.splice(i, 1);
-    sequenceData.poses.pop()
+    sequenceData.poses.pop(1)
     setPoseValues(newPoseValue)
     console.log(sequenceData.poses)
   }
@@ -46,6 +47,7 @@ function NewSequence({userSignedIn}) {
       getPoses()
       setSequenceData(initialState)
       console.log(res.data)
+      navigate("/sequences/")
     })
     .catch(err => {
       console.log(err)
@@ -90,61 +92,61 @@ console.log(sequenceData)
   return (
     <div>
       <h3>Create a New Sequence</h3>
-      <form onSubmit={handleSubmit}>
+      <Form className="form" onSubmit={handleSubmit}>
 
-        <label>Author: </label>
-        <select id="author" onChange={handleChange}>
+        <Form.Select aria-label="Default select example" id="author" onChange={handleChange}>
           <option  value={userSignedIn}>{userSignedIn}</option>
-        </select>
+        </Form.Select>
         <br />
 
-        <label>Intention: </label>
-        <input id="intention" name='intention' type='text' onChange={handleChange} />
+        <FloatingLabel label="Intention" className="mb-3"> 
+        <Form.Control id="intention" name='intention' type='text' placeholder='Intention' onChange={handleChange} />
+        </FloatingLabel>
         <br />
 
-        <label>Duration: </label>
-        <select id="duration" onChange={handleChange} >
-          <option value='60'>60</option>
-          <option value='30'>30</option>
-          <option value='15'>15</option>
-          <option value='5'>5</option>
-        </select>
+        <Form.Select aria-label="Default select example" id="duration" onChange={handleChange} >
+          <option value=''>Duration</option>
+          <option value='6000'>60 minutes</option>
+          <option value='3000'>30 minutes</option>
+          <option value='1500'>15 minutes</option>
+          <option value='500'>5 minutes</option>
+        </Form.Select>
         <br />
 
-
-        <label>Intensity</label>
-        <select id="intensity" onChange={handleChange} >
+        <Form.Select aria-label="Default select example" id="intensity" onChange={handleChange} >
+          <option value=''>Intensity</option>
           <option value='All levels'>All levels</option>
           <option value='Low'>Low</option>
           <option value='Medium'>Medium</option>
           <option value='High'>High</option>
-        </select>
+        </Form.Select>
         <br />
 
-        <label>Peak Pose: </label>
-        <input id="peak_pose" name='peak_pose' type='text' onChange={handleChange} default="N/A"/>
-        <br />
+        <FloatingLabel label="Peak Pose" className="mb-3"> 
+        <Form.Control id="peak_pose" name='peak_pose' type='text' placeholder='Peak Pose' onChange={handleChange} />
+        </FloatingLabel>
 
-        <label> Poses: </label>
+        <Form.Label> <strong>Poses:</strong> </Form.Label>
         {poseValues.map((value, index) => (
           <div key={index} onChange={handlePoseChange} > 
-            <select selected disable id="poses" key={index}>
+            <Form.Select selected disable id="poses" key={index}>
                 <option value=""> </option>
             {poses.map((pose, index) => (
                 <option key={index} value={pose.english_name}>{pose.english_name}</option>
             ))}
-            </select>
+            </Form.Select>
           </div>
         ))}
-          <button type="button" onClick={() => addPoseFields()}>Add</button>
-          <button type="button" onClick={() => removePoseFields()}>Remove</button>
-
+        <div className="poseBtn">
+          <Button className="button" variant="primary" type="button" onClick={() => addPoseFields()}>Add Pose</Button>
+          <Button className="button" variant="danger" type="button" onClick={() => removePoseFields()}>Remove Pose</Button>
+        </div>
         <br />
         
-        <button type='submit'>Create Sequence</button>
+        <Button variant="primary" type='submit'>Create Sequence</Button>
         
 
-      </form>
+      </Form>
     </div>
   )
 

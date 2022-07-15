@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Form, Button, Alert} from 'react-bootstrap';
 
 function SignUp({setUserSignedIn}){
 
@@ -8,8 +9,8 @@ function SignUp({setUserSignedIn}){
   const [networkErrMsg, setNetworkErrMsg] = useState(null)
   const [clientErrMsg, setClientErrMsg] = useState(null)
 
-  const statusCodeToErr = (responseObj) => {
-    setNetworkErrMsg(`Network Error of code: ${responseObj.status}`)
+  const statusCodeToErr = () => {
+    setNetworkErrMsg(`That username has already been taken! Please choose a different one.`)
   }
 
   const clientFormValidation = (formInfo) => {
@@ -72,21 +73,30 @@ function SignUp({setUserSignedIn}){
   return (
     <div>
       <h3>Sign up for PowerAsana</h3>
-      <form onSubmit={handleLogin}>
-        <label>username:</label>
-        <input id="username" name="username" type="text" onChange={handleChange}/>
-        
+      
+      {
+        networkErrMsg 
+        ? <Alert variant='warning' className="form">{networkErrMsg}</Alert>
+        : null
+      }
+      
+      <Form className="form" onSubmit={handleLogin}>
+        <Form.Group className='mb-3' controlId="username">
+        <Form.Label>Create Username:</Form.Label>
+        <Form.Control name="username" type="text" placeholder="Enter username" onChange={handleChange}/>
+        </Form.Group>
         <br />
        
-        <label>password:</label>
-        <input id="password" name="username" type="text" onChange={handleChange}/>
-        
+       <Form.Group className='mb-3' controlId="password">
+        <Form.Label>Create Password:</Form.Label>
+        <Form.Control name="password" type="password" placeholder="Password" onChange={handleChange}/>
+        </Form.Group>
         <br />
 
-        <button type="submit">Login</button>
-        
-      </form>
-      <p>{networkErrMsg}</p>
+        <Button variant="primary" type="submit">Login</Button>
+
+      </Form>
+
       <p>{clientErrMsg}</p>
      </div>
   );

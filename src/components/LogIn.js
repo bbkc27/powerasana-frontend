@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom"
 import axiosInstance from '../utils/axios-utils';
+import {Form, Button, FloatingLabel, Alert} from 'react-bootstrap';
+
 
 function LogIn({setUserSignedIn, setAccessToken}){
 
@@ -16,9 +18,9 @@ function LogIn({setUserSignedIn, setAccessToken}){
   const [networkErrMsg, setNetworkErrMsg] = useState(null)
   const [clientErrMsg, setClientErrMsg] = useState(null)
 
-  const statusCodeToErr = (responseObj) => {
-    setNetworkErrMsg(`Network Error of code: ${responseObj.status}`)
-  }
+  // const statusCodeToErr = (responseObj) => {
+  //   setNetworkErrMsg(`Network Error of code: ${responseObj.status}`)
+  // }
 
   const clientFormValidation = (formData) => {
     const blankFields = Object.entries(formData)
@@ -55,6 +57,7 @@ function LogIn({setUserSignedIn, setAccessToken}){
     })
     .catch(err => {
       console.log(err)
+      setClientErrMsg("The username or password you entered is incorrect.")
       navigate('/login')
     })
 
@@ -65,18 +68,33 @@ function LogIn({setUserSignedIn, setAccessToken}){
   return (
     <div>
       <h3>Login</h3>
-        <form onSubmit={handleLogin}>
-            <label>username:</label>
-            <input id="username" name="username" type="text" onChange={handleChange}/>
-            <label>password:</label>
-            <input id="password" name="password" type="password" onChange={handleChange}/>
-            <button type="submit">Login</button>
-        </form>
+
+      {
+        clientErrMsg
+        ? <Alert variant="warning" className="form">{clientErrMsg}</Alert>
+        : null
+      }
+
+      
+      <Form className="form" onSubmit={handleLogin}>
+        
+        <FloatingLabel label="Username" className="mb-3">
+          <Form.Control id="username" type="username" placeholder="Username" onChange={handleChange} />
+        </FloatingLabel>
+        
+        <FloatingLabel label="Password" className="mb-3">
+          <Form.Control type="password" id="password" placeholder="Password" onChange={handleChange} />
+        </FloatingLabel>
+        
+        <br/>
+
+        <Button variant="secondary" type="submit">Login</Button>
+        
+      </Form>
       <p>{networkErrMsg}</p>
-      <p>{clientErrMsg}</p>
     </div>
   )
 
 }
 
-export default LogIn
+export default LogIn;

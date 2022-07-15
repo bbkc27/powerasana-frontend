@@ -8,6 +8,9 @@ import LogIn from './components/LogIn';
 import LogOut from './components/LogOut';
 import NewSequence from './components/CreateSequence';
 import SequenceList from './components/SequenceList';
+import PoseDetail from './components/PoseDetail';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Container, Navbar} from 'react-bootstrap';
 
 function App() {
 
@@ -17,29 +20,36 @@ function App() {
   return (
     <div className="App">
 
-      <h1>PowerAsana</h1>
-      <nav>
-        <Link to = "/">Home | </Link>
-        { userSignedIn 
-        ? <Link to = "/logout">Log out</Link>
-        : 
-        <>
-          <Link to = "/login">Log in | </Link>
-          <Link to="/signup">Sign up</Link>
-        </>
-        }
+      <Navbar bg="dark" variant="dark">
+        <Container>
+      <Navbar.Brand href='/'>PowerAsana</Navbar.Brand>
 
-      </nav>
-      
+      <Navbar.Toggle />
+      <Navbar.Collapse className='justify-content-end'>
+      <Navbar.Text>
       {userSignedIn ? (
-        <nav>
-          <span>Welcome back, {userSignedIn}</span>
-        </nav>  
+          <span>Welcome back, {userSignedIn} | </span>
         ) : null
       }
+
+        { userSignedIn 
+        ? <Link className='jsLink' to = "/logout">Log out</Link>
+        : 
+        <>
+          <Link className='jsLink' to = "/login">Log in | </Link>
+          <Link className='jsLink' to="/signup">Sign up</Link>
+        </>
+        }
+       
+          </Navbar.Text>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar> 
+
     <Routes>
       <Route path='/' element={<HomePage />} />
       <Route path='/poses' element={<PoseList />} />
+      <Route path='/poses/:id' element={<PoseDetail />} />
       <Route path='/sequences' element={<SequenceList userSignedIn={userSignedIn}/>} />
       <Route path='/signup' element={<SignUp setUserSignedIn={setUserSignedIn}/>} />
       <Route path='/login' element={<LogIn setUserSignedIn={setUserSignedIn} setAccessToken={setAccessToken} />} />

@@ -1,6 +1,8 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import axiosInstance from '../utils/axios-utils';
+import {Card, Button} from 'react-bootstrap'
 
 function PoseList(){
 
@@ -25,15 +27,24 @@ function PoseList(){
   return (
     <div>
       <h3>All Poses</h3>
-      <ul>
+      <div className="poseCards">
         {
           poses.map((pose, id) =>{
             return (
-            <li key={id}>{pose.sanskrit}</li>
+            // <li key={id}>{pose.sanskrit}</li>
+            
+            <Card className="poseCard" key={id} style={{width: '18rem'}}>
+              <Link to={`/poses/${pose.id}`}>
+              <Card.Img style={{width: '8rem'}} variant="top" src={pose.image_url} />
+              <br />
+              <Card.Title>{pose.english_name}</Card.Title>
+              </Link>            
+            </Card>
+
             )
           })
         }
-      </ul>
+      </div>
     </div>
   )
 

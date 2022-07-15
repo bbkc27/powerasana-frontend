@@ -41,7 +41,11 @@ return (
       }
     </ul>
 
-    <a href='/createsequence'>Create New Sequence</a>
+    {
+      userSignedIn
+      ? <a href='/createsequence'>Create New Sequence</a>
+      : null
+    }
   </div>
 )
 
