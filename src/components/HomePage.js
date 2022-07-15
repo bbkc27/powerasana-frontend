@@ -5,14 +5,12 @@ function HomePage(){
   return (
     <div>
       <div id ="nav-links">
-        <a>Log In</a>
-        <a>Register</a>
-        <a>Sign Out</a>
+ 
       </div>
 
       <div id='button-container'>
-        <button>All Poses</button>
-        <button>All Sequences</button>
+        <a href="/poses">All Poses | </a>
+        <a href="/sequences">All Sequences</a>
       </div>
 
       <button id="hamburger">Click Me!</button>

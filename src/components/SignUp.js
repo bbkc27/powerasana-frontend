@@ -71,13 +71,20 @@ function SignUp({setUserSignedIn}){
 
   return (
     <div>
-      <h3>Login</h3>
+      <h3>Sign up for PowerAsana</h3>
       <form onSubmit={handleLogin}>
         <label>username:</label>
         <input id="username" name="username" type="text" onChange={handleChange}/>
+        
+        <br />
+       
         <label>password:</label>
         <input id="password" name="username" type="text" onChange={handleChange}/>
-                  <button type="submit">Login</button>
+        
+        <br />
+
+        <button type="submit">Login</button>
+        
       </form>
       <p>{networkErrMsg}</p>
       <p>{clientErrMsg}</p>

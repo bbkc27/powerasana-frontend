@@ -92,6 +92,12 @@ console.log(sequenceData)
       <h3>Create a New Sequence</h3>
       <form onSubmit={handleSubmit}>
 
+        <label>Author: </label>
+        <select id="author" onChange={handleChange}>
+          <option  value={userSignedIn}>{userSignedIn}</option>
+        </select>
+        <br />
+
         <label>Intention: </label>
         <input id="intention" name='intention' type='text' onChange={handleChange} />
         <br />
