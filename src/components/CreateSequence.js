@@ -46,12 +46,13 @@ function NewSequence({userSignedIn}) {
     .then(res => {
       getPoses()
       setSequenceData(initialState)
-      console.log(res.data)
+      console.log(res)
       navigate("/sequences/")
     })
     .catch(err => {
       console.log(err)
     })
+
 
   }
 
@@ -65,12 +66,12 @@ function NewSequence({userSignedIn}) {
       if (options[i].selected){
           setSequenceData({...sequenceData, [sequenceData.poses]: sequenceData.poses.push(options[i].value)})
           e.target.disabled = true
-          console.log(sequenceData.poses)
+          console.log(options[i])
       }
     }
   }
 
-console.log(sequenceData)
+// console.log(sequenceData)
 
   //GET poses for select options
   const poseListRestEndpoint = '/poses/'
@@ -85,9 +86,11 @@ console.log(sequenceData)
     axiosInstance.get(poseListRestEndpoint)
       .then(res => {
         setPoses(res.data)
-        console.log(res.data)
+        // console.log(res.data)
       })
   }
+
+  console.log(poses)
 
   return (
     <div>
@@ -107,8 +110,8 @@ console.log(sequenceData)
         <Form.Select aria-label="Default select example" id="duration" onChange={handleChange} >
           <option value=''>Duration</option>
           <option value='6000'>60 minutes</option>
-          <option value='3000'>30 minutes</option>
-          <option value='1500'>15 minutes</option>
+          <option value='1800'>30 minutes</option>
+          <option value='900'>15 minutes</option>
           <option value='500'>5 minutes</option>
         </Form.Select>
         <br />
@@ -128,17 +131,17 @@ console.log(sequenceData)
 
         <Form.Label> <strong>Poses:</strong> </Form.Label>
         {poseValues.map((value, index) => (
-          <div key={index} onChange={handlePoseChange} > 
-            <Form.Select selected disable id="poses" key={index}>
+          <div> 
+            <Form.Select selected disable id="poses" onChange={handlePoseChange} >
                 <option value=""> </option>
             {poses.map((pose, index) => (
-                <option key={index} value={pose.english_name}>{pose.english_name}</option>
+                <option key={index} value={index}>{pose.english_name}</option>
             ))}
             </Form.Select>
           </div>
-        ))}
+           ))}
         <div className="poseBtn">
-          <Button className="button" variant="primary" type="button" onClick={() => addPoseFields()}>Add Pose</Button>
+          <Button className="button" variant="warning" type="button" onClick={() => addPoseFields()}>Add Pose</Button>
           <Button className="button" variant="danger" type="button" onClick={() => removePoseFields()}>Remove Pose</Button>
         </div>
         <br />

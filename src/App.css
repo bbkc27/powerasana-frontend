@@ -7,7 +7,7 @@ body{
   justify-content: center;
 }
 
-.button{
+.button {
   margin-top: 1rem;
   width: 9rem;
 }
@@ -33,6 +33,10 @@ body{
 
 .poseImage{
   max-height: 200px;
+}
+
+.tableImage{
+  max-height: 100px;
 }
 
 .poseDetails{
@@ -83,10 +87,30 @@ h3 {
 
 .homeButton {
   padding: 1rem;
+  color: #2EC4B6;
+}
+
+.title{
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.aboutSection{
+  text-align: center;
+  font-style: italic;
 }
 
 #hamburger{
   display: none;
+}
+
+#poses{
+  margin-bottom: .5rem;
+}
+
+.sequenceTable {
+  margin-top: 1rem;
+  max-width: 80vw;
 }
 
 

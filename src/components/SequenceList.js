@@ -4,7 +4,7 @@ import axiosInstance from '../utils/axios-utils';
 
 function SequenceList({userSignedIn}){
 
-  const sequnceListEndpoint = '/sequences'
+  const sequnceListEndpoint = '/sequences/'
 
   const [sequences, setSequences] = useState([])
 
@@ -22,19 +22,19 @@ function SequenceList({userSignedIn}){
     })
   }
 
-console.log(sequences)
 
 return (
   <div>
     
     <h3>All Sequences</h3>
 
+
     <ul>
       {
-        sequences.map((sequence, id) => {
+        sequences.map((sequence) => {
           if (sequence.author === 'PowerAsanaAdmin' || userSignedIn){
           return (
-            <li key={id}>{sequence.intention} | {sequence.author}</li>
+            <li key={sequence.id}>{sequence.intention} | {sequence.author.username}</li>
           )
           }
         })

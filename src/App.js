@@ -9,6 +9,7 @@ import LogOut from './components/LogOut';
 import NewSequence from './components/CreateSequence';
 import SequenceList from './components/SequenceList';
 import PoseDetail from './components/PoseDetail';
+import SequenceDetail from './components/SequenceDetail';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Navbar} from 'react-bootstrap';
 
@@ -20,9 +21,9 @@ function App() {
   return (
     <div className="App">
 
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="warning" variant="success">
         <Container>
-      <Navbar.Brand href='/'>PowerAsana</Navbar.Brand>
+      <Navbar.Brand className="brand" href='/'>PowerAsana</Navbar.Brand>
 
       <Navbar.Toggle />
       <Navbar.Collapse className='justify-content-end'>
@@ -46,16 +47,20 @@ function App() {
       </Container>
     </Navbar> 
 
-    <Routes>
-      <Route path='/' element={<HomePage />} />
-      <Route path='/poses' element={<PoseList />} />
-      <Route path='/poses/:id' element={<PoseDetail />} />
-      <Route path='/sequences' element={<SequenceList userSignedIn={userSignedIn}/>} />
-      <Route path='/signup' element={<SignUp setUserSignedIn={setUserSignedIn}/>} />
-      <Route path='/login' element={<LogIn setUserSignedIn={setUserSignedIn} setAccessToken={setAccessToken} />} />
-      <Route path='/logout' element={<LogOut setUserSignedIn={setUserSignedIn} setAccessToken={setAccessToken} />} />
-      <Route path='/createsequence' element={<NewSequence userSignedIn={userSignedIn} />} />
-    </Routes>
+    <div>
+      <Routes>
+       <Route path='/' element={<HomePage />} />
+        <Route path='/poses' element={<PoseList />} />
+        <Route path='/poses/:id' element={<PoseDetail />} />
+        <Route path='/sequences' element={<SequenceList userSignedIn={userSignedIn}/>} />
+        <Route path='sequences/:id' element={<SequenceDetail />} />
+        <Route path='/signup' element={<SignUp setUserSignedIn={setUserSignedIn}/>} />
+        <Route path='/login' element={<LogIn setUserSignedIn={setUserSignedIn} setAccessToken={setAccessToken} />} />
+        <Route path='/logout' element={<LogOut setUserSignedIn={setUserSignedIn} setAccessToken={setAccessToken} />} />
+        <Route path='/createsequence' element={<NewSequence userSignedIn={userSignedIn} />} />
+     </Routes>
+     </div>
+
     </div>
   );
 }
