@@ -33,7 +33,6 @@ function NewSequence({userSignedIn}) {
     newPoseValue.splice(i, 1);
     sequenceData.poses.pop(1)
     setPoseValues(newPoseValue)
-    console.log(sequenceData.poses)
   }
  
   //Submit new sequence
@@ -46,7 +45,6 @@ function NewSequence({userSignedIn}) {
     .then(res => {
       getPoses()
       setSequenceData(initialState)
-      console.log(res)
       navigate("/sequences/")
     })
     .catch(err => {
@@ -66,12 +64,10 @@ function NewSequence({userSignedIn}) {
       if (options[i].selected){
           setSequenceData({...sequenceData, [sequenceData.poses]: sequenceData.poses.push(options[i].value)})
           e.target.disabled = true
-          console.log(options[i])
       }
     }
   }
 
-// console.log(sequenceData)
 
   //GET poses for select options
   const poseListRestEndpoint = '/poses/'
@@ -86,11 +82,9 @@ function NewSequence({userSignedIn}) {
     axiosInstance.get(poseListRestEndpoint)
       .then(res => {
         setPoses(res.data)
-        // console.log(res.data)
       })
   }
 
-  console.log(poses)
 
   return (
     <div>
@@ -112,7 +106,7 @@ function NewSequence({userSignedIn}) {
           <option value='6000'>60 minutes</option>
           <option value='1800'>30 minutes</option>
           <option value='900'>15 minutes</option>
-          <option value='500'>5 minutes</option>
+          <option value='300'>5 minutes</option>
         </Form.Select>
         <br />
 

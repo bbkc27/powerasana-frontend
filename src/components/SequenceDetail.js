@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import axiosInstance from '../utils/axios-utils';
-import {Table} from 'react-bootstrap';
+import {Table, Alert} from 'react-bootstrap';
 
 function SequenceDetail() {
 
@@ -50,7 +50,7 @@ function SequenceDetail() {
       <p>{sequence.intention} | {sequence.duration} | {sequence.intensity} Intensity | Peak Pose: {sequence.peak_pose}</p>
 
 
-      <Table className='sequenceTable' striped bordered hover>
+      <Table className='sequenceTable'  bordered hover>
         <thead>
           <tr>
             <th>Pose</th>
@@ -63,16 +63,16 @@ function SequenceDetail() {
             sequencePoses && poses.length > 0 
             ? sequencePoses.map((poseId) => {
               return (
-                <tr>
+                <tr className='tableRow'>
                   
-                  <td><Link to={`/poses/${poseId}`}>{poses[poseId].english_name}</Link></td>
+                  <td><Link className='link' to={`/poses/${poseId}`}>{poses[poseId].english_name}</Link></td>
                   
                   <td>{poses[poseId].cues}</td>
                   <td><img className="tableImage" src={poses[poseId].image_url} /></td>
                 </tr>
               )
             })
-            : <h1>False</h1>
+            : <Alert variant='info'> Sequence Loading ... </Alert>
           }
         </tbody>
       </Table>

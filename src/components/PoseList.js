@@ -22,7 +22,6 @@ function PoseList(){
       })
   }
 
-  console.log(poses)
 
   return (
     <div>
@@ -31,7 +30,6 @@ function PoseList(){
         {
           poses.map((pose, id) =>{
             return (
-            // <li key={id}>{pose.sanskrit}</li>
             
             <Card className="poseCard" key={id} style={{width: '18rem'}}>
               <Link to={`/poses/${pose.id}`}>
