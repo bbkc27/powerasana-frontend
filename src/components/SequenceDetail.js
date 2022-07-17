@@ -12,6 +12,7 @@ function SequenceDetail() {
 
   const [sequence, setSequence] = useState([])
   const [sequencePoses, setSequencePoses] = useState([])
+  const [duration, setDuration] = useState('')
 
   useEffect(() => {
     getSequence()
@@ -22,8 +23,12 @@ function SequenceDetail() {
     axiosInstance.get(sequenceEndpoint)
     .then(res => {
       setSequence(res.data)
-      console.log(res.data.poses)
       setSequencePoses(res.data.poses)
+      if (res.data.duration === "01:00:00"){
+        setDuration(res.data.duration.slice(0,2))
+      } else {
+        setDuration(res.data.duration.slice(3,5))
+      }
     })
   }
 
@@ -35,20 +40,48 @@ function SequenceDetail() {
     axiosInstance.get(poseListRestEndpoint)
     .then(res => {
       setPoses(res.data)
-      console.log(res.data)
     })
   }
 
 
-
-
-
-
-
   return (
     <div className='poseDetails'>
-      <p>{sequence.intention} | {sequence.duration} | {sequence.intensity} Intensity | Peak Pose: {sequence.peak_pose}</p>
+      <div className='sequenceHeader'>
+      <p>
 
+        <span className='sequenceInfo'>
+          <strong>{sequence.intention} </strong>  
+        </span>
+
+        <span className='sequenceInfo'>|</span>
+
+        <span className='sequenceInfo'>
+          {duration}
+          {
+            sequence.duration === "01:00:00"
+            ? <span className="durationHour"> hour</span>
+            : <span className=""> minutes</span>
+          }
+          </span>
+
+          <span className='sequenceInfo'>|</span>
+
+          <span className='sequenceInfo'>
+          {sequence.intensity} 
+          {
+            sequence.intensity === 'All levels'
+            ? <span></span>
+            :<span> Intensity  </span>
+          }
+          </span>
+          
+          <span className='sequenceInfo'>|</span>
+
+          <span className='sequenceInfo'>
+          Peak Pose: <strong>{sequence.peak_pose}</strong>
+          </span>
+      </p>
+      </div>
 
       <Table className='sequenceTable'  bordered hover>
         <thead>
@@ -67,7 +100,7 @@ function SequenceDetail() {
                   
                   <td><Link className='link' to={`/poses/${poseId}`}>{poses[poseId].english_name}</Link></td>
                   
-                  <td>{poses[poseId].cues}</td>
+                  <td>{poses[poseId].cues[0]}<br/>{poses[poseId].cues[1]}<br />{poses[poseId].cues[2]}</td>
                   <td><img className="tableImage" src={poses[poseId].image_url} /></td>
                 </tr>
               )

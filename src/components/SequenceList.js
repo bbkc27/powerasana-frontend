@@ -17,10 +17,11 @@ function SequenceList({userSignedIn}){
   const getSequences = () => {
     axiosInstance.get(sequnceListEndpoint)
     .then(res => {
-      console.log(res.data)
       setSequences(res.data)
     })
   }
+
+  
 
 
 return (
@@ -35,8 +36,9 @@ return (
     }
     </div>
 
-  <div className="sequenceCards">
-    <p>PowerAsana Sequences: </p>
+  <div>
+    <p className="listName">PowerAsana Sequences: </p>
+    <div className="sequenceCards">
       {
         sequences.map((sequence, id) => {
           if (sequence.author.username === 'PowerAsanaAdmin'){
@@ -44,27 +46,61 @@ return (
               <Card className="sequenceCard" key={id} style={{width: '10rem'}}>
                 <Link className="link" to={`/sequences/${sequence.id}`}>
                   <Card.Title>{sequence.intention}</Card.Title>
+                  {
+                    sequence.duration === "01:00:00"
+                    ? <Card.Text>{sequence.duration.slice(0,2)} hour</Card.Text>
+                    : <Card.Text>{sequence.duration.slice(3,5)} minutes</Card.Text>
+                  }
+                  {
+                    sequence.intensity === "All levels"
+                    ? <Card.Text>{sequence.intensity}</Card.Text>
+                    : <Card.Text>{sequence.intensity} Intensity</Card.Text>
+                  }
                 </Link>
               </Card>
             )
           }
         })
       }
+      </div>
     </div>
 
     <div>
-      <p>My Sequences: </p>
-      <ul>
       {
-        sequences.map((sequence) => {
-        if (sequence.author.username === userSignedIn){
-        return (
-        <li key={sequence.id}>{sequence.intention} | {sequence.author.username}</li>
-        )
-        }
-        })
+        userSignedIn
+        ?
+        <div>
+        <p className="listName">My Sequences: </p>
+        <div className="sequenceCards">
+          {
+            sequences.map((sequence, id) => {
+              if (sequence.author.username === userSignedIn){
+              return (
+                  <Card className="sequenceCard" key={id} style={{width: '10rem'}}>
+                    <Link className="link" to={`/sequences/${sequence.id}`}>
+                      <Card.Title>{sequence.intention}</Card.Title>
+                      {
+                        sequence.duration === "01:00:00"
+                        ? <Card.Text>{sequence.duration.slice(0,2)} hour</Card.Text>
+                        : <Card.Text>{sequence.duration.slice(3,5)} minutes</Card.Text>
+                      }
+                      {
+                        sequence.intensity === "All levels"
+                        ? <Card.Text>{sequence.intensity}</Card.Text>
+                        : <Card.Text>{sequence.intensity} Intensity</Card.Text>
+                      }
+                    </Link>
+                  </Card>
+                )
+              }
+            })
+          }
+          </div>
+        </div>
+        :
+        null        
       }
-      </ul>
+
     </div>
 
 

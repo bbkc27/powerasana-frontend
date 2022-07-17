@@ -9,6 +9,7 @@ function PoseDetail() {
   const poseEndpoint = `/poses/${id}`
 
   const [pose, setPose] = useState('')
+  const [cues, setCues] = useState([])
 
   useEffect(() => {
     getPose()
@@ -19,10 +20,9 @@ function PoseDetail() {
     .then(res => {
       console.log(res.data)
       setPose(res.data)
+      setCues(res.data.cues)
     })
   }
-
-  console.log(pose)
 
   return (
     <div className="poseDetails">
@@ -31,8 +31,15 @@ function PoseDetail() {
 
       <Card className="card" style={{width: '50vw'}}>
       <Card.Img variant="top" className="poseImage" src={pose.image_url} alt={pose.english_name} />      
-      <Card.Body>
-        <Card.Text>{pose.cues}</Card.Text>
+
+      <Card.Body className="cardBody">
+          {
+            cues.map((cue) => {
+              return (
+                <Card.Text>{cue}</Card.Text>
+              )
+            })
+          }
         </Card.Body>
       </Card>
 

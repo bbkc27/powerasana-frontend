@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import {Form, Button, Alert} from 'react-bootstrap';
+import {useNavigate} from 'react-router-dom';
 
 function SignUp({setUserSignedIn}){
 
   const signUpEndpoint = 'signup/'
+  const navigate = useNavigate()
 
   const [formInfo, setFormInfo] = useState({username:'', password:''})
   const [networkErrMsg, setNetworkErrMsg] = useState(null)
@@ -30,7 +32,6 @@ function SignUp({setUserSignedIn}){
 
   const handleLogin = (e) => {
         
-    console.log(formInfo)
     e.preventDefault()
 
     setNetworkErrMsg(null)
@@ -61,10 +62,8 @@ function SignUp({setUserSignedIn}){
             if (!data) {
                 console.log(`problem with network request: ${networkErrMsg}`)
             } else {
-                
-                console.log(data)
-                
                 setUserSignedIn(data.username)
+                navigate('/login')
             }
         })
 
@@ -73,7 +72,7 @@ function SignUp({setUserSignedIn}){
   return (
     <div>
       <h3>Sign up for PowerAsana</h3>
-      
+
       {
         networkErrMsg 
         ? <Alert variant='warning' className="form">{networkErrMsg}</Alert>
