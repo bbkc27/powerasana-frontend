@@ -40,6 +40,7 @@ return (
     <p className="listName">PowerAsana Sequences: </p>
     <div className="sequenceCards">
       {
+        // eslint-disable-next-line
         sequences.map((sequence, id) => {
           if (sequence.author.username === 'PowerAsanaAdmin'){
           return (
@@ -73,6 +74,7 @@ return (
         <p className="listName">My Sequences: </p>
         <div className="sequenceCards">
           {
+            // eslint-disable-next-line
             sequences.map((sequence, id) => {
               if (sequence.author.username === userSignedIn){
               return (

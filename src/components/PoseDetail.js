@@ -13,6 +13,7 @@ function PoseDetail() {
 
   useEffect(() => {
     getPose()
+    // eslint-disable-next-line
   },[])
 
   const getPose = () => {

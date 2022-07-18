@@ -2,13 +2,14 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import axiosInstance from '../utils/axios-utils';
-import {Card, Button} from 'react-bootstrap'
+import {Card} from 'react-bootstrap'
 
 function PoseList(){
 
   const poseListRestEndpoint = '/poses/'
 
   const [poses, setPoses] = useState([])
+  // const [query, setQuery] = useState('');
 
   useEffect(() => {
     getPoses()

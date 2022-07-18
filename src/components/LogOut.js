@@ -12,6 +12,7 @@ function LogOut({ setUserSignedIn, setAccessToken}) {
         setUserSignedIn(null)
         setAccessToken(null)
         navigate('/login')
+        // eslint-disable-next-line
     }, [])
   return (
     <div>You're now logged out.</div>

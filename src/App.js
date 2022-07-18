@@ -33,7 +33,7 @@ function App() {
         ) : null
       }
 
-        { userSignedIn 
+        { accessToken
         ? <Link className='jsLink' to = "/logout">Log out</Link>
         : 
         <>

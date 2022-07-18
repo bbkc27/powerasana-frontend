@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import axiosInstance from '../utils/axios-utils';
@@ -17,6 +16,7 @@ function SequenceDetail() {
   useEffect(() => {
     getSequence()
     getPoses()
+    // eslint-disable-next-line
   }, [])
 
   const getSequence = () => {
@@ -101,7 +101,7 @@ function SequenceDetail() {
                   <td><Link className='link' to={`/poses/${poseId}`}>{poses[poseId].english_name}</Link></td>
                   
                   <td>{poses[poseId].cues[0]}<br/>{poses[poseId].cues[1]}<br />{poses[poseId].cues[2]}</td>
-                  <td><img className="tableImage" src={poses[poseId].image_url} /></td>
+                  <td><img className="tableImage" src={poses[poseId].image_url} alt={poses[poseId].english_name} /></td>
                 </tr>
               )
             })
