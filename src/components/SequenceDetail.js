@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {useParams, Link} from 'react-router-dom';
-import axiosInstance from '../utils/axios-utils';
+import axios from 'axios';
 import {Table, Alert} from 'react-bootstrap';
 
 function SequenceDetail() {
 
   let {id} = useParams();
-  const sequenceEndpoint = `/sequences/${id}`
-  const poseListRestEndpoint = '/poses/'
+  const sequenceEndpoint = `https://powerasana.herokuapp.com/sequences/${id}`
+  const poseListRestEndpoint = 'https://powerasana.herokuapp.com/poses/'
 
   const [sequence, setSequence] = useState([])
   const [sequencePoses, setSequencePoses] = useState([])
@@ -20,7 +20,7 @@ function SequenceDetail() {
   }, [])
 
   const getSequence = () => {
-    axiosInstance.get(sequenceEndpoint)
+    axios.get(sequenceEndpoint)
     .then(res => {
       setSequence(res.data)
       setSequencePoses(res.data.poses)
@@ -37,7 +37,7 @@ function SequenceDetail() {
 
 
   const getPoses = () => {
-    axiosInstance.get(poseListRestEndpoint)
+    axios.get(poseListRestEndpoint)
     .then(res => {
       setPoses(res.data)
     })

@@ -39,7 +39,7 @@ function SignUp({setUserSignedIn}){
         return
     }
     
-    const apiUrl = process.env.REACT_APP_API_URL
+    const apiUrl = 'https://powerasana.herokuapp.com/'
     
     fetch( apiUrl + signUpEndpoint, 
             {

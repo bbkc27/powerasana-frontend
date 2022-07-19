@@ -1,14 +1,14 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 import {useNavigate} from "react-router-dom";
-import axiosInstance from "../utils/axios-utils";
+import axios from "axios";
 import {Form, FloatingLabel, Button} from 'react-bootstrap';
 
 function NewSequence({userSignedIn}) {
 
   
   const navigate = useNavigate()
-  const createSequenceEndpoint='sequences/'
+  const createSequenceEndpoint='https://powerasana.herokuapp.com/sequences/'
 
   const initialState = {
     intention: '',
@@ -40,7 +40,7 @@ function NewSequence({userSignedIn}) {
     
     e.preventDefault()
 
-    axiosInstance
+    axios
     .post(createSequenceEndpoint, sequenceData)
     .then(res => {
       getPoses()
@@ -79,7 +79,7 @@ function NewSequence({userSignedIn}) {
   }, [])
 
   const getPoses = () => {
-    axiosInstance.get(poseListRestEndpoint)
+    axios.get(poseListRestEndpoint)
       .then(res => {
         setPoses(res.data)
       })

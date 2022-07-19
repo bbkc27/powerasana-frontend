@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom"
-import axiosInstance from '../utils/axios-utils';
+
+import axios from 'axios';
 import {Form, Button, FloatingLabel, Alert} from 'react-bootstrap';
 
 
 function LogIn({setUserSignedIn, setAccessToken, accessToken}){
 
   const navigate = useNavigate()
-  const loginEndpoint = 'api/token/'
+  const loginEndpoint = 'https://powerasana.herokuapp.com/api/token/'
 
   const initialState = {
     username:'', 
@@ -18,9 +19,6 @@ function LogIn({setUserSignedIn, setAccessToken, accessToken}){
   const [networkErrMsg, setNetworkErrMsg] = useState(null)
   const [clientErrMsg, setClientErrMsg] = useState(null)
 
-  // const statusCodeToErr = (responseObj) => {
-  //   setNetworkErrMsg(`Network Error of code: ${responseObj.status}`)
-  // }
 
   const clientFormValidation = (formData) => {
     const blankFields = Object.entries(formData)
@@ -45,14 +43,14 @@ function LogIn({setUserSignedIn, setAccessToken, accessToken}){
       return
     }
 
-    axiosInstance
+    axios
     .post(loginEndpoint, formData)
     .then(res => {
-      console.log(res.access)
+      console.log(res.data.access)
       setUserSignedIn(formData.username)
-      sessionStorage.setItem('user', formData.username)
+      localStorage.setItem('user', formData.username)
       setAccessToken(res.access)
-      sessionStorage.setItem('access_token', res.access)
+      localStorage.setItem('access_token', res.data.access)
       setFormData(initialState)
       navigate('/')
     })

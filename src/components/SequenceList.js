@@ -1,12 +1,12 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import axiosInstance from '../utils/axios-utils';
+import axios from 'axios';
 import {Card, Button} from 'react-bootstrap';
 
 function SequenceList({userSignedIn}){
 
-  const sequnceListEndpoint = '/sequences/'
+  const sequnceListEndpoint = 'https://powerasana.herokuapp.com/sequences/'
 
   const [sequences, setSequences] = useState([])
 
@@ -15,7 +15,7 @@ function SequenceList({userSignedIn}){
   }, [])
 
   const getSequences = () => {
-    axiosInstance.get(sequnceListEndpoint)
+    axios.get(sequnceListEndpoint)
     .then(res => {
       setSequences(res.data)
     })

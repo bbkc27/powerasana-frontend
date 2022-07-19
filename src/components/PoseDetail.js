@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import {useParams, Link} from 'react-router-dom';
-import axiosInstance from "../utils/axios-utils";
+import axios from "axios";
 import {Card} from 'react-bootstrap';
 
 function PoseDetail() {
 
   let {id} = useParams();
-  const poseEndpoint = `/poses/${id}`
+  const poseEndpoint = `https://powerasana.herokuapp.com/poses/${id}`
 
   const [pose, setPose] = useState('')
   const [cues, setCues] = useState([])
@@ -17,7 +17,7 @@ function PoseDetail() {
   },[])
 
   const getPose = () => {
-    axiosInstance.get(poseEndpoint)
+    axios.get(poseEndpoint)
     .then(res => {
       console.log(res.data)
       setPose(res.data)
