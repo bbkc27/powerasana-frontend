@@ -2,11 +2,12 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import axiosInstance from '../utils/axios-utils';
+import axios from 'axios';
 import {Card} from 'react-bootstrap'
 
 function PoseList(){
 
-  const poseListRestEndpoint = '/poses/'
+  const poseListRestEndpoint = 'https://powerasana.herokuapp.com/poses/'
 
   const [poses, setPoses] = useState([])
   // const [query, setQuery] = useState('');
@@ -16,11 +17,12 @@ function PoseList(){
   }, [])
 
   const getPoses = () => {
-    axiosInstance.get(poseListRestEndpoint)
+    axios.get(poseListRestEndpoint)
       .then(res => {
         console.log(res.data)
         setPoses(res.data)
       })
+
   }
 
   console.log(poses)
