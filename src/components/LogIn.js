@@ -48,11 +48,11 @@ function LogIn({setUserSignedIn, setAccessToken, accessToken}){
     axiosInstance
     .post(loginEndpoint, formData)
     .then(res => {
-      console.log(res.data.access)
+      console.log(res.access)
       setUserSignedIn(formData.username)
       sessionStorage.setItem('user', formData.username)
-      setAccessToken(res.data.access)
-      sessionStorage.setItem('access_token', res.data.access)
+      setAccessToken(res.access)
+      sessionStorage.setItem('access_token', res.access)
       setFormData(initialState)
       navigate('/')
     })
