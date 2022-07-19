@@ -28,8 +28,9 @@ function PoseList(){
     <div>
       <h3>All Poses</h3>
       <div className="poseCards">
-        {
-          poses.map((pose, id) =>{
+        { (!poses)
+          ? null
+          : poses.map((pose, id) =>{
             return (
             
             <Card className="poseCard" key={id} style={{width: '18rem'}}>
