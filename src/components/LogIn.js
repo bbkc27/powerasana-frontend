@@ -4,7 +4,7 @@ import axiosInstance from '../utils/axios-utils';
 import {Form, Button, FloatingLabel, Alert} from 'react-bootstrap';
 
 
-function LogIn({setUserSignedIn, setAccessToken}){
+function LogIn({setUserSignedIn, setAccessToken, accessToken}){
 
   const navigate = useNavigate()
   const loginEndpoint = 'api/token/'
@@ -48,10 +48,11 @@ function LogIn({setUserSignedIn, setAccessToken}){
     axiosInstance
     .post(loginEndpoint, formData)
     .then(res => {
+      console.log(res.data.access)
       setUserSignedIn(formData.username)
-      localStorage.setItem('user', formData.username)
+      sessionStorage.setItem('user', formData.username)
       setAccessToken(res.data.access)
-      localStorage.setItem('access_token', res.data.access)
+      sessionStorage.setItem('access_token', res.data.access)
       setFormData(initialState)
       navigate('/')
     })

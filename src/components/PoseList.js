@@ -23,6 +23,7 @@ function PoseList(){
       })
   }
 
+  console.log(poses)
 
   return (
     <div>

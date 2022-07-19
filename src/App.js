@@ -55,7 +55,7 @@ function App() {
         <Route path='/sequences' element={<SequenceList userSignedIn={userSignedIn}/>} />
         <Route path='sequences/:id' element={<SequenceDetail />} />
         <Route path='/signup' element={<SignUp setUserSignedIn={setUserSignedIn}/>} />
-        <Route path='/login' element={<LogIn setUserSignedIn={setUserSignedIn} setAccessToken={setAccessToken} />} />
+        <Route path='/login' element={<LogIn setUserSignedIn={setUserSignedIn} setAccessToken={setAccessToken} accessToken={accessToken}/>} />
         <Route path='/logout' element={<LogOut setUserSignedIn={setUserSignedIn} setAccessToken={setAccessToken} />} />
         <Route path='/createsequence' element={<NewSequence userSignedIn={userSignedIn} />} />
      </Routes>
