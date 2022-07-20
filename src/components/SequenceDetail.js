@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import axios from 'axios';
-import {Table, Alert} from 'react-bootstrap';
+import {Table, Alert, Button} from 'react-bootstrap';
 
-function SequenceDetail() {
+function SequenceDetail({userSignedIn}) {
 
   let {id} = useParams();
   const sequenceEndpoint = `https://powerasana.herokuapp.com/sequences/${id}`
@@ -22,6 +22,7 @@ function SequenceDetail() {
   const getSequence = () => {
     axios.get(sequenceEndpoint)
     .then(res => {
+      console.log(id)
       setSequence(res.data)
       setSequencePoses(res.data.poses)
       if (res.data.duration === "01:00:00"){
@@ -82,6 +83,39 @@ function SequenceDetail() {
           </span>
       </p>
       </div>
+      
+        {
+          (!userSignedIn)
+          ? null
+          :
+          <div>
+          {
+            (!sequence.author)
+            ? null
+            : 
+            <div>
+            {
+              (userSignedIn === sequence.author.username)
+              ? <div>
+              <a href={`/sequences/${id}/edit`}>
+              <Button variant="warning">Edit Sequence</Button>
+              </a>
+    
+              <span>  </span>
+    
+              <a href={`/sequences/${id}/delete`}>
+              <Button variant="secondary">Delete Sequence</Button>
+              </a>
+            </div>
+              : null
+            }
+            </div>
+          }
+          </div>
+        }
+        
+
+      
 
       <Table className='sequenceTable'  bordered hover>
         <thead>

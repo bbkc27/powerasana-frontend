@@ -10,6 +10,8 @@ import NewSequence from './components/CreateSequence';
 import SequenceList from './components/SequenceList';
 import PoseDetail from './components/PoseDetail';
 import SequenceDetail from './components/SequenceDetail';
+import UpdateSequence from './components/UpdateSequence';
+import DeleteSequence from './components/DeleteSequence';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Navbar} from 'react-bootstrap';
 
@@ -33,7 +35,7 @@ function App() {
         ) : null
       }
 
-        { accessToken
+        { userSignedIn
         ? <Link className='jsLink' to = "/logout">Log out</Link>
         : 
         <>
@@ -53,7 +55,9 @@ function App() {
         <Route path='/poses' element={<PoseList />} />
         <Route path='/poses/:id' element={<PoseDetail />} />
         <Route path='/sequences' element={<SequenceList userSignedIn={userSignedIn}/>} />
-        <Route path='sequences/:id' element={<SequenceDetail />} />
+        <Route path='sequences/:id' element={<SequenceDetail userSignedIn={userSignedIn} />} />
+        <Route path='/sequences/:id/edit' element={<UpdateSequence userSignedIn={userSignedIn}  />} />
+        <Route path='/sequences/:id/delete' element={<DeleteSequence />} />
         <Route path='/signup' element={<SignUp setUserSignedIn={setUserSignedIn}/>} />
         <Route path='/login' element={<LogIn setUserSignedIn={setUserSignedIn} setAccessToken={setAccessToken} accessToken={accessToken}/>} />
         <Route path='/logout' element={<LogOut setUserSignedIn={setUserSignedIn} setAccessToken={setAccessToken} />} />

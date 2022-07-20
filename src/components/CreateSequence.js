@@ -70,7 +70,7 @@ function NewSequence({userSignedIn}) {
 
 
   //GET poses for select options
-  const poseListRestEndpoint = '/poses/'
+  const poseListRestEndpoint = 'https://powerasana.herokuapp.com/poses/'
 
   const [poses, setPoses] = useState([])
 
@@ -128,9 +128,17 @@ function NewSequence({userSignedIn}) {
           <div> 
             <Form.Select selected disable id="poses" onChange={handlePoseChange} >
                 <option value=""> </option>
-            {poses.map((pose, index) => (
+            {
+              (!poses)
+              ? null
+              :
+              <>
+              {poses.map((pose, index) => (
                 <option key={index} value={index}>{pose.english_name}</option>
-            ))}
+              ))}
+              </>
+            }
+            
             </Form.Select>
           </div>
            ))}
