@@ -70,7 +70,7 @@ return (
       {
         userSignedIn
         ?
-        <div>
+        <div className='mySequences'>
         <p className="listName">My Sequences: </p>
         <div className="sequenceCards">
           {

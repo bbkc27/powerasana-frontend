@@ -87,7 +87,7 @@ function NewSequence({userSignedIn}) {
 
 
   return (
-    <div>
+    <div className="createSequence">
       <h3>Create a New Sequence</h3>
       <Form className="form" onSubmit={handleSubmit}>
 

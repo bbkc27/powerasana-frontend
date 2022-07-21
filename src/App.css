@@ -162,7 +162,7 @@ td img{
   font-weight: bold;
 }
 
-.footerLogo {
+.footerLogo, .headerLogo {
   max-height: 40px;
 
 }
@@ -172,10 +172,11 @@ td img{
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: #CBF3F0;
+  background-color: #2EC4B6;
   color: #271801;
   text-align: center;
   font-size: 14px;
+  margin-top: 1rem;
 }
 
 
@@ -187,6 +188,10 @@ td img{
 
 .yogaAtHome{
   max-width: 40vw;
+}
+
+.mySequences, .createSequence{
+  padding-bottom: 3rem;
 }
 
 @keyframes move {

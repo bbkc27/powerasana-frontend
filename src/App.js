@@ -13,6 +13,7 @@ import SequenceDetail from './components/SequenceDetail';
 import UpdateSequence from './components/UpdateSequence';
 import DeleteSequence from './components/DeleteSequence';
 import Footer from './components/Footer';
+import FooterLogo from './components/FooterLogo.png'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Navbar} from 'react-bootstrap';
 
@@ -26,7 +27,7 @@ function App() {
 
       <Navbar bg="warning" variant="success">
         <Container>
-      <Navbar.Brand className="brand" href='/'>PowerAsana</Navbar.Brand>
+      <Navbar.Brand className="brand" href='/'><img className='headerLogo' src={FooterLogo} alt="Power Asana Logo"/></Navbar.Brand>
 
       <Navbar.Toggle />
       <Navbar.Collapse className='justify-content-end'>

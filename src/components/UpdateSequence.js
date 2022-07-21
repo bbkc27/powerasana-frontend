@@ -91,7 +91,7 @@ function UpdateSequence() {
   }
 
   return (
-    <div>
+    <div className="createSequence">
       <h3>Update Sequence Details</h3>
 
       {

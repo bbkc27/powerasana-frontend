@@ -46,7 +46,7 @@ function SequenceDetail({userSignedIn}) {
 
 
   return (
-    <div className='poseDetails'>
+    <div className='poseDetails createSequence'>
       <div className='sequenceHeader'>
       <p>
 

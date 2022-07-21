@@ -21,10 +21,13 @@ function HomePage(){
 
       <div className="aboutSection">
         <p>Power your vinyasa practice at home and the sequences you teach in the studio!</p>
-      </div>
+        
 
       <div className='homeImage'>
       <img className='yogaAtHome' src={YogaAtHome} />
+      </div>
+      <br />
+      <p>Created for yoga teachers by yoga teachers</p>
       </div>
       
 
