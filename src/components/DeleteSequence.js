@@ -1,40 +1,52 @@
-// import React, {useState} from "react";
-// import {useNavigate} from "react-router-dom";
-// import axios from "axios";
-// import {Button, Alert} from 'react-bootstrap';
+import React, {useState, useEffect} from "react";
+import {useNavigate} from "react-router-dom";
+import axios from "axios";
+import {Button, Alert} from 'react-bootstrap';
 
-// function DeleteSequence() {
+function DeleteSequence() {
 
-//   const navigate = useNavigate()
+  const navigate = useNavigate()
 
-//   const sequenceEndpoint = `https://powerasana.herokuapp.com/sequences/`
+  const sequenceEndpoint = `https://powerasana.herokuapp.com/sequences/`
 
-//   const [sequenceData, setSequenceData] = useState([])
+  const [sequenceData, setSequenceData] = useState([])
 
-//   const getSequence = () => {
-//     axios.get(sequenceEndpoint)
-//     .then(res => {
-//       setSequenceData(res.data[0])
-      
-//     })
-//   }
+  useEffect(() => {
+    getSequence()
+    // eslint-disable-next-line
+  },[])
+
+  const getSequence = () => {
+    axios.get(sequenceEndpoint)
+    .then(res => {
+      setSequenceData(res.data[0])
+    })
+  }
   
-//   const handleSubmit = () => {
+  console.log(sequenceData.id)
 
-//   }
+  const handleSubmit = (e) => {
+    e.preventDefault()
 
-//   return(
-//     <div>
-//       <Alert variant='warning'>Are you sure you want to delete this sequence?</Alert>
+    axios
+    .delete(sequenceEndpoint + sequenceData.id, sequenceData)
+    .then(res => {
+      navigate('/sequences/')
+    })
+  }
 
-//       <Button>Delete</Button>
+  return(
+    <div>
+      <Alert variant='warning'>Are you sure you want to delete this sequence?</Alert>
 
-//       <a href='/sequences'>
-//       <Button>Cancel</Button>
-//       </a>
+      <Button onClick={handleSubmit}>Delete</Button>
 
-//     </div>
-//   )
-// }
+      <a href='/sequences'>
+      <Button>Cancel</Button>
+      </a>
 
-// export default DeleteSequence;
+    </div>
+  )
+}
+
+export default DeleteSequence;
