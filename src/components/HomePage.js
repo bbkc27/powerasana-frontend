@@ -24,7 +24,7 @@ function HomePage(){
         
 
       <div className='homeImage'>
-      <img className='yogaAtHome' src={YogaAtHome} />
+      <img className='yogaAtHome' src={YogaAtHome} alt="yoga at home" />
       </div>
       <br />
       <p>Created for yoga teachers by yoga teachers</p>
