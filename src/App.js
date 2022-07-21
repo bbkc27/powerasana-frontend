@@ -12,6 +12,7 @@ import PoseDetail from './components/PoseDetail';
 import SequenceDetail from './components/SequenceDetail';
 import UpdateSequence from './components/UpdateSequence';
 import DeleteSequence from './components/DeleteSequence';
+import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Navbar} from 'react-bootstrap';
 
@@ -64,6 +65,8 @@ function App() {
         <Route path='/createsequence' element={<NewSequence userSignedIn={userSignedIn} />} />
      </Routes>
      </div>
+
+     <Footer />
 
     </div>
   );
