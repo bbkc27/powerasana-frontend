@@ -1,20 +1,27 @@
-// import React, {useState} from 'react'
+import React from 'react'
 
-// function SearchForm({query, setQuery}) {
+function SearchForm({query, setQuery, pagesVisited}) {
 
 
-//   const handleChange = (event) => {
-//     setQuery(event.target.value)
-//   }
+  const handleChange = (event) => {
+    setQuery(event.target.value)
+  }
 
-//   return (
-//     <div>
-//       <div className='search'>
-//         <label htmlFor='searchInput'>Search by Breed: </label>
-//         <input type="text" id="searchInput" onChange={handleChange} />
-//       </div>
-//     </div>
-//   )
-// }
 
-// export default SearchForm
+  return (
+    <div>
+      {
+        pagesVisited !== 0
+        ? null
+        : 
+        <div className='search'>
+         <label htmlFor='searchInput'>Search Poses: </label>
+          <input type="text" id="searchInput" onChange={handleChange} />
+        </div>
+      }
+
+    </div>
+  )
+}
+
+export default SearchForm
