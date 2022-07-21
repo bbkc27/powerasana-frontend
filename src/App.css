@@ -112,7 +112,7 @@ h3 {
   font-style: italic;
 }
 
-#hamburger{
+.hamburger{
   display: none;
 }
 
@@ -182,7 +182,10 @@ td img{
   margin-top: 1rem;
 }
 
-
+.menu{
+  display:flex;
+  justify-content: flex-end;
+}
 
 .homeImage {
   display: flex;
@@ -241,57 +244,95 @@ td img{
   border-radius: .25rem;
 }
 
-@keyframes move {
-  0% {
-    transform: translateX(0px)
-  }
-  50%{
-    transform: translateX(400px)
-  }
-  100%{
-    transform: translateX(800px) translateY(100px)
-  }
+.bm-burger {
+  display: none;
 }
 
-#square {
-  height: 100px;
-  width: 100px;
-  background-color: pink;
-  /* animation-name: move; */
-  animation-duration: 6s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  display:none;
-}
 
-@media screen and (max-width:800px) {
-  body {
-    background-color: red;
-  }
+
+@media screen and (max-width:700px) {
   h1{
     letter-spacing: 10px;
   }
 
-}
-
-@media screen and (max-width: 500px) {
-  body{
-    background-color: green;
-  }
-  h1{
-    letter-spacing: 1px;
-  }
-  #hamburger {
-    margin-top: 20%;
+  .hamburger{
     display: block;
   }
-  #button-container{
+
+  /* Position and sizing of burger button */
+  .bm-burger-button {
+    position: fixed;
+    width: 5vw;
+    height: 2vh;
+    right: 3rem;
+    top: 1.5rem;
+  }
+
+/* Color/shape of burger icon bars */
+  .bm-burger-bars {
+    background: #373a47;
+  }
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: #2EC4B6;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 1vh;
+  width: 1vw;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: #373a47;
+  padding: 1rem;
+  font-size: 1.15em;
+  color: white;
+}
+
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+
+/* Individual item */
+.bm-item, .menu-item a {
+  display: inline-block;
+  color: white !important;
+  margin-bottom: 10px;
+  text-align: left;
+  text-decoration: none;
+  /* transition: color 0.2s; */
+}
+
+.bm-item a:hover {
+  color: #ffffff;
+}
+
+
+  .menu {
     display: none;
   }
-  #nav-links{
-    justify-content: space-around;
-  }
 }
+
 
 @media (min-width: 900px) {
   .poseCards {

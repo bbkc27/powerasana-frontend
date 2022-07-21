@@ -46,7 +46,6 @@ function LogIn({setUserSignedIn, setAccessToken, accessToken}){
     axios
     .post(loginEndpoint, formData)
     .then(res => {
-      console.log(res.data.access)
       setUserSignedIn(formData.username)
       localStorage.setItem('user', formData.username)
       setAccessToken(res.access)

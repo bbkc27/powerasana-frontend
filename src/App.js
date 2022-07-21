@@ -16,6 +16,7 @@ import Footer from './components/Footer';
 import FooterLogo from './components/FooterLogo.png'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Navbar} from 'react-bootstrap';
+import {slide as Menu } from 'react-burger-menu';
 
 function App() {
 
@@ -33,16 +34,38 @@ function App() {
       <Navbar.Collapse className='justify-content-end'>
       <Navbar.Text>
       {userSignedIn ? (
-          <span>Welcome back, {userSignedIn} | </span>
+          <span className='menu'>Welcome back, {userSignedIn}!  </span>
         ) : null
       }
 
         { userSignedIn
-        ? <Link className='jsLink' to = "/logout">Log out</Link>
+        ? 
+          <div>
+            <Link className='jsLink menu' to = "/logout">Log out</Link>
+
+            <div className="hamburger">
+            <Menu right>
+              <p>{userSignedIn}</p>
+              <Link className='menu-item' to="/poses">Poses</Link>
+              <Link className='menu-item' to='/sequences'>Sequences</Link>
+              <Link className=' menu-item' to='/logout'>Log out</Link>
+            </Menu>
+            </div>
+          </div>
         : 
         <>
-          <Link className='jsLink' to = "/login">Log in | </Link>
-          <Link className='jsLink' to="/signup">Sign up</Link>
+          <Link className='jsLink menu' to = "/login">Log in | </Link>
+          <Link className='jsLink menu' to="/signup">Sign up</Link>
+
+          <div className="hamburger">
+          <Menu right>
+              <p>{userSignedIn}</p>
+              <a className='menu-item' href="/poses">Poses</a>
+              <a className='menu-item' href='/sequences'>Sequences</a>
+              <a className='menu-item' href='/login'>Log in</a>
+              <a className='menu-item' href='/signup'>Sign up</a>
+            </Menu>
+            </div>
         </>
         }
        

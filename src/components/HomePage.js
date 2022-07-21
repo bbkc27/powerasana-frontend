@@ -31,9 +31,7 @@ function HomePage(){
       </div>
       
 
-      
-
-      <button id="hamburger">Click Me!</button>
+    
 
 
 
