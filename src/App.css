@@ -200,6 +200,16 @@ td img{
   padding-bottom: 3rem;
 }
 
+.createSeqBtn {
+  padding-bottom: 3rem;
+  background-color: #2EC4B6 !important;
+  border:#2EC4B6 !important;
+}
+
+.createSequenceLink{
+  color: white;
+}
+
 /* PAGINATION: */
 
 .paginationButtons {
@@ -261,7 +271,7 @@ td img{
 
   /* Position and sizing of burger button */
   .bm-burger-button {
-    position: fixed;
+    position: absolute;
     width: 5vw;
     height: 2vh;
     right: 3rem;

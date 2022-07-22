@@ -33,6 +33,7 @@ function SequenceDetail({userSignedIn}) {
     })
   }
 
+  console.log(id)
 
   const [poses, setPoses] = useState([])
 

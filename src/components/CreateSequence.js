@@ -103,7 +103,7 @@ function NewSequence({userSignedIn}) {
 
         <Form.Select aria-label="Default select example" id="duration" onChange={handleChange} >
           <option value=''>Duration</option>
-          <option value='6000'>60 minutes</option>
+          <option value='3600'>60 minutes</option>
           <option value='1800'>30 minutes</option>
           <option value='900'>15 minutes</option>
           <option value='300'>5 minutes</option>

@@ -31,7 +31,7 @@ return (
     <h3>Discover Sequences</h3>
     {
       userSignedIn
-      ? <Button className="createSeqBtn" variant='info'><a className='createSequenceLink' href='/createsequence'>Create New Sequence</a></Button>
+      ? <Button className="createSeqBtn"><a className='createSequenceLink' href='/createsequence'>Create New Sequence</a></Button>
       : null
     }
     </div>

@@ -46,6 +46,7 @@ function App() {
             <div className="hamburger">
             <Menu right>
               <p>{userSignedIn}</p>
+              <Link className='menu-item' to="/">Home</Link>
               <Link className='menu-item' to="/poses">Poses</Link>
               <Link className='menu-item' to='/sequences'>Sequences</Link>
               <Link className=' menu-item' to='/logout'>Log out</Link>
@@ -59,7 +60,7 @@ function App() {
 
           <div className="hamburger">
           <Menu right>
-              <p>{userSignedIn}</p>
+              <a className='menu-item' href='/'>Home</a>
               <a className='menu-item' href="/poses">Poses</a>
               <a className='menu-item' href='/sequences'>Sequences</a>
               <a className='menu-item' href='/login'>Log in</a>

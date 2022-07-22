@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {Form, FloatingLabel, Button} from 'react-bootstrap';
 
@@ -7,6 +7,7 @@ import {Form, FloatingLabel, Button} from 'react-bootstrap';
 function UpdateSequence() {
 
   const navigate = useNavigate ()
+  let {id} = useParams();
 
   const updateSequenceEndpoint=`https://powerasana.herokuapp.com/sequences/`
   const poseListRestEndpoint = 'https://powerasana.herokuapp.com/poses/'
@@ -23,19 +24,20 @@ function UpdateSequence() {
     // eslint-disable-next-line
   }, [])
 
-  const getSequence = () => {
-    axios.get(updateSequenceEndpoint)
-    .then(res => {
-      setSequenceData(res.data[0])
-      setSequencePoses(res.data[0].poses)
-      if (res.data[0].duration === "01:00:00"){
-        setDuration(res.data[0].duration.slice(0,2))
-      } else {
-        setDuration(res.data[0].duration.slice(3,5))
-      }
-      
-    })
+  const getSequence = async () => {
+    const response = await axios
+                          .get(`${updateSequenceEndpoint}${id}`)
+                          console.log(response.data)
+                          setSequenceData(response.data)
+                          setSequencePoses(response.data.poses)
+                          if (response.data.duration === "01:00:00"){
+                            setDuration(response.data.duration.slice(0,2))
+                          } else {
+                             setDuration(response.data.duration.slice(3,5))
+                           }
   }
+
+
 
   const getPoses = () => {
     axios.get(poseListRestEndpoint)
@@ -106,7 +108,7 @@ function UpdateSequence() {
         <br />
 
         <Form.Select aria-label="Default select example" id="duration" value={duration*60} onChange={handleChange} >
-          <option value='6000' >60 minutes</option>
+          <option value='3600' >60 minutes</option>
           <option value='1800' >30 minutes</option>
           <option value='900' >15 minutes</option>
           <option value='300'>5 minutes</option>

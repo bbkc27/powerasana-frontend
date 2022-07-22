@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {Button, Alert} from 'react-bootstrap';
 
 function DeleteSequence() {
 
   const navigate = useNavigate()
+  let {id} = useParams();
 
   const sequenceEndpoint = `https://powerasana.herokuapp.com/sequences/`
 
@@ -16,11 +17,11 @@ function DeleteSequence() {
     // eslint-disable-next-line
   },[])
 
-  const getSequence = () => {
-    axios.get(sequenceEndpoint)
-    .then(res => {
-      setSequenceData(res.data[0])
-    })
+  const getSequence = async () => {
+    const response = await axios
+                          .get(`${sequenceEndpoint}${id}`)
+                          console.log(response.data)
+                          setSequenceData(response.data)
   }
   
   console.log(sequenceData.id)
