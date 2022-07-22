@@ -22,7 +22,7 @@ function NewSequence({userSignedIn}) {
   const [sequenceData, setSequenceData] = useState(initialState)
   
  //Functions to create add and remove fields
-  const [poseValues, setPoseValues] = useState([{poses: sequenceData.poses}])
+  const [poseValues, setPoseValues] = useState([])
 
   let addPoseFields = () => {
     setPoseValues([...poseValues, {pose: ''}])
@@ -66,6 +66,7 @@ function NewSequence({userSignedIn}) {
           e.target.disabled = true
       }
     }
+    console.log(sequenceData.poses)
   }
 
 
@@ -85,6 +86,7 @@ function NewSequence({userSignedIn}) {
       })
   }
 
+  console.log(sequenceData)
 
   return (
     <div className="createSequence">

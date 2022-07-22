@@ -269,11 +269,12 @@ td img{
     display: block;
   }
 
+
   /* Position and sizing of burger button */
   .bm-burger-button {
     position: absolute;
     width: 5vw;
-    height: 2vh;
+    height: 15px;
     right: 3rem;
     top: 1.5rem;
   }
@@ -337,6 +338,9 @@ Note: Beware of modifying this element as it can break the animations - you shou
   color: #ffffff;
 }
 
+.menu-user{
+  color: orange !important;
+}
 
   .menu {
     display: none;

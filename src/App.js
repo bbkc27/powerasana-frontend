@@ -45,7 +45,7 @@ function App() {
 
             <div className="hamburger">
             <Menu right>
-              <p>{userSignedIn}</p>
+              <p className="menu-user">{userSignedIn}</p>
               <Link className='menu-item' to="/">Home</Link>
               <Link className='menu-item' to="/poses">Poses</Link>
               <Link className='menu-item' to='/sequences'>Sequences</Link>

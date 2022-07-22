@@ -22,7 +22,7 @@ function SequenceDetail({userSignedIn}) {
   const getSequence = () => {
     axios.get(sequenceEndpoint)
     .then(res => {
-      console.log(id)
+      console.log(res.data)
       setSequence(res.data)
       setSequencePoses(res.data.poses)
       if (res.data.duration === "01:00:00"){
@@ -33,7 +33,7 @@ function SequenceDetail({userSignedIn}) {
     })
   }
 
-  console.log(id)
+  console.log(sequencePoses)
 
   const [poses, setPoses] = useState([])
 
