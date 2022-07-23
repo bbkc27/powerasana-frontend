@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import axios from 'axios';
+import DeleteSequence from './DeleteSequence';
 import {Table, Alert, Button} from 'react-bootstrap';
 
 function SequenceDetail({userSignedIn}) {
@@ -104,9 +105,8 @@ function SequenceDetail({userSignedIn}) {
     
               <span>  </span>
     
-              <a href={`/sequences/${id}/delete`}>
-              <Button variant="secondary">Delete Sequence</Button>
-              </a>
+              <DeleteSequence />
+
             </div>
               : null
             }

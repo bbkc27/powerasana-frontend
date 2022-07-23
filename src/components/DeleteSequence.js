@@ -11,6 +11,7 @@ function DeleteSequence() {
   const sequenceEndpoint = `https://powerasana.herokuapp.com/sequences/`
 
   const [sequenceData, setSequenceData] = useState([])
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     getSequence()
@@ -36,8 +37,22 @@ function DeleteSequence() {
     })
   }
 
+  const handleClose = () => {
+    setShow(false)
+  }
+  const handleShow=() => {
+    setShow(true);
+  }
+
   return(
-    <Modal.Dialog>
+    <>
+
+    <Button variant='secondary' onClick={handleShow}>
+      Delete Sequence
+    </Button>
+
+    <Modal show={show} onHide={handleClose}>
+
       <Modal.Header closeButton>
         <Modal.Title>Delete Sequence</Modal.Title>
       </Modal.Header>
@@ -49,12 +64,13 @@ function DeleteSequence() {
       <Modal.Footer>
       <Button variant='warning' onClick={handleSubmit}>Delete</Button>
 
-      <a href={`/sequences/${sequenceData.id}`}>
-      <Button variant='secondary'>Cancel</Button>
-      </a>
+      {/* <a href={`/sequences/${sequenceData.id}`}> */}
+      <Button variant='secondary' onClick={handleClose}>Cancel</Button>
+      {/* </a> */}
       </Modal.Footer>
 
-    </Modal.Dialog>
+    </Modal>
+    </>
   )
 }
 
