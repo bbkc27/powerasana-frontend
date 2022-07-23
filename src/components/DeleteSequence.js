@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
-import {Button, Alert} from 'react-bootstrap';
+import {Button, Alert, Modal} from 'react-bootstrap';
 
 function DeleteSequence() {
 
@@ -37,16 +37,24 @@ function DeleteSequence() {
   }
 
   return(
-    <div>
+    <Modal.Dialog>
+      <Modal.Header closeButton>
+        <Modal.Title>Delete Sequence</Modal.Title>
+      </Modal.Header>
+
+      <Modal.Body>
       <Alert variant='warning'>Are you sure you want to delete this sequence?</Alert>
+      </Modal.Body>
 
-      <Button onClick={handleSubmit}>Delete</Button>
+      <Modal.Footer>
+      <Button variant='warning' onClick={handleSubmit}>Delete</Button>
 
-      <a href='/sequences'>
-      <Button>Cancel</Button>
+      <a href={`/sequences/${sequenceData.id}`}>
+      <Button variant='secondary'>Cancel</Button>
       </a>
+      </Modal.Footer>
 
-    </div>
+    </Modal.Dialog>
   )
 }
 
